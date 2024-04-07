@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
  */
 public class OfNullableTest {
     public static void main(String[] args) {
-        // test1();
+        test1();
 
         // test2();
         // List<String> nullList = null;
@@ -30,12 +30,12 @@ public class OfNullableTest {
         // List<String> strList = Lists.newArrayList("1", "2");
         // test3(strList);
 
-        List<TempListBO> nullList = null;
-        test3(nullList);
-        List<TempListBO> notNullList = new ArrayList<>();
-        test3(notNullList);
-        List<TempListBO> strList = TempListBO.getList();
-        test3(strList);
+        // List<TempListBO> nullList = null;
+        // test3(nullList);
+        // List<TempListBO> notNullList = new ArrayList<>();
+        // test3(notNullList);
+        // List<TempListBO> strList = TempListBO.getList();
+        // test3(strList);
 
         // List<TempListBO> test4_1 = test4(nullList);
         // System.out.println("test4_1 = " + JsonUtil.toJsonString(test4_1));
@@ -60,6 +60,18 @@ public class OfNullableTest {
         List<String> notNullList = new ArrayList<>();
         String notNullListStr = Optional.ofNullable(notNullList).map(JSON::toJSONString).orElse(null);
         System.out.println(notNullListStr);
+
+        // 如果过滤完了,list还是为空,那么直接报错
+        // Optional<String> first = notNullList.stream().findFirst();
+        // byte[] bytes = first.get().getBytes();
+        // System.out.println(new String(bytes));
+
+        notNullList.add("sdad");
+        Optional<String> first = notNullList.stream().findFirst();
+        if (first.isPresent()) {
+            byte[] bytes = first.get().getBytes();
+            System.out.println(new String(bytes));
+        }
     }
 
     private static void test2(List<String> inputList) {
