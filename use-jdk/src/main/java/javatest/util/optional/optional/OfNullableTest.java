@@ -1,18 +1,11 @@
 package javatest.util.optional.optional;
 
 import com.alibaba.fastjson2.JSON;
-import com.google.common.collect.Lists;
 import com.xuegao.util.JsonUtil;
 import common.model.temp.TempListBO;
 import org.springframework.util.ObjectUtils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.function.Function;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
