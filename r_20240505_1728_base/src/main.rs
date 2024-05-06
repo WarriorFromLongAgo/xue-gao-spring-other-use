@@ -13,7 +13,7 @@ fn main() {
 
 fn test_int() {
     // mut 表示可变，变量默认是不可以变的
-    let mut foo = 1;
+    let mut foo: i32 = 1;
     let bar = foo;
     // bar = 2
     println!("foo {}", foo);
@@ -112,5 +112,4 @@ fn test_tuple() {
 
 fn test_arr() {
     let arr_1: [i32; 5] = [12, 26, 332, 446, 584];
-
 }
