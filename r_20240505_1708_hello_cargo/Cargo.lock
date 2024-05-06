@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "r_20240505_1708_hello_world"
+name = "r_20240505_1708_hello_cargo"
 version = "0.1.0"

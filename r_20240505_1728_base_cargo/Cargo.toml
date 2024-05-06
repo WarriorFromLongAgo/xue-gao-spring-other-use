@@ -1,9 +1,12 @@
-workspace = { members = ["r_20240505_1728_base"] }
 [package]
-name = "r_20240505_1708_hello_world"
+name = "r_20240505_1728_base_cargo"
 version = "0.1.0"
 edition = "2021"
+
+
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+rand = "0.8.5"
+

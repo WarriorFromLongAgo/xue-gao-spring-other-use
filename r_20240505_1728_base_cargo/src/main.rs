@@ -3,6 +3,9 @@ use std::io;
 
 use rand::Rng;
 
+mod my_mod;
+mod my_mod_v1;
+
 fn main() {
     test_int();
     test_string();
@@ -79,7 +82,7 @@ fn test_cmp() {
             match err {
                 // 如果解析错误是 ParseIntError 类型
                 // 打印错误信息
-                ParseIntError => println!("解析整数错误: {}", err),
+                // ParseIntError => println!("解析整数错误: {}", err),
                 // 如果不是 ParseIntError 类型
                 // 打印默认的错误信息
                 _ => println!("发生了一个错误: {}", err),
@@ -112,4 +115,28 @@ fn test_tuple() {
 
 fn test_arr() {
     let arr_1: [i32; 5] = [12, 26, 332, 446, 584];
+}
+
+fn function() {
+    println!("called `function()`");
+}
+
+fn test_my_mod() {
+    println!("======= {} ======= ", "test_my_mod");
+    println!("======= {} ======= ", "test_my_mod");
+    println!("======= {} ======= ", "test_my_mod");
+
+    my_mod::function();
+    // my_mod::private_function();
+
+    function();
+
+    my_mod::indirect_access();
+
+    my_mod::nested::function();
+    // my_mod::nested::private_function();
+
+    // my_mod::inaccessible;
+
+    }
 }
