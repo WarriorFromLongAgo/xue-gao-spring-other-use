@@ -7,7 +7,7 @@ fn internal_adder(a: i32, b: i32) -> i32 {
 }
 
 #[cfg(test)]
-mod test {
+mod int_test {
     use super::*;
     
     #[test]
