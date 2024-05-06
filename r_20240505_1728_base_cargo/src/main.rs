@@ -137,6 +137,4 @@ fn test_my_mod() {
     // my_mod::nested::private_function();
 
     // my_mod::inaccessible;
-
-    }
 }

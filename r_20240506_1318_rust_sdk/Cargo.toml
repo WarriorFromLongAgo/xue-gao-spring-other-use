@@ -3,15 +3,10 @@ name = "r_20240506_1318_rust_sdk"
 version = "0.1.0"
 edition = "2021"
 
-[[bin]]
-name="sdk_test"
-path="./src/sdk/sdk_test.rs"
-
-[[bin]]
-name="rand_test"
-path="./src/rand/rand_test.rs"
-
 [dependencies]
 rand = "0.8.5"
 
+
+[profile.bench]
+debug = true
 
