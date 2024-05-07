@@ -5,3 +5,7 @@ mod mut_test;
 mod let_const;
 mod tup_test;
 mod arr_test;
+mod ifelse_test;
+mod while_test;
+mod for_test;
+mod owner_ship_test;

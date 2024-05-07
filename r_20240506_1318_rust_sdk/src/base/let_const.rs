@@ -28,6 +28,12 @@ pub mod let_const_test_1 {
     }
 
     #[test]
+    fn let_char_test_3() {
+        let spaces: char = 'a';
+        println!("The value of spaces is: {spaces}");
+    }
+
+    #[test]
     fn const_test_1() {
         const THREE_HOURS_IN_SECONDS: u32 = 60 * 60 * 3;
 
