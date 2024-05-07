@@ -50,8 +50,8 @@ fn test_io() {
     println!("======= {} ======= ", "test_io");
 
     // let mut test_str = String::new();
-    // io::stdin().read_line(&mut test_str).expect("无法读取");
-    // io::stdin().read_line(&mut test_str).expect("无法读取");
+    // my_io::stdin().read_line(&mut test_str).expect("无法读取");
+    // my_io::stdin().read_line(&mut test_str).expect("无法读取");
     // println!("输入的数据是 {}", test_str);
 }
 
