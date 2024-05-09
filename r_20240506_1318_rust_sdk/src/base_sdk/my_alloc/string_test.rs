@@ -1,5 +1,7 @@
 #[cfg(test)]
 mod string_test_1 {
+    use std::collections::HashMap;
+
     #[test]
     fn string_test_1() {
         let guess = String::new();
@@ -13,7 +15,24 @@ mod string_test_1 {
 
         println!("You hello: {hello}");
         println!("You world: {world}");
+    }
 
+    #[test]
+    fn string_format_test_1() {
+        let s1 = String::from("tic");
+        let s2 = String::from("tac");
+        let s3 = String::from("toe");
+
+        let s = format!("{s1}-{s2}-{s3}");
+
+        println!("You s: {s}");
+
+        let s1 = String::from("tic");
+        let s2 = String::from("tac");
+        let s3 = String::from("toe");
+
+        let s = s1 + "-" + &s2 + "-" + &s3;
+        println!("You s: {s}");
     }
 
     #[test]
@@ -33,5 +52,24 @@ mod string_test_1 {
         };
         println!("You guess_int: {guess_int}");
         // 如果解析成功，可以在这里继续执行后续的测试逻辑
+    }
+
+    #[test]
+    fn string_slice_test_1() {
+        let hello = "Здравствуйте";
+
+        let s = &hello[0..4];
+        println!("You s: {s}");
+        // You s: Зд
+    }
+
+    #[test]
+    fn string_for_test_1() {
+        for c in "Зд".chars() {
+            println!("{c}");
+        }
+        for b in "Зд".bytes() {
+            println!("{b}");
+        }
     }
 }

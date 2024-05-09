@@ -11,8 +11,11 @@ mod option_test_1 {
 
         let x: i8 = 5;
         let y: Option<i8> = Option::Some(5);
+        // let sum = x + y;
+        // no implementation for `i8 + Option<i8>`
 
-        let sum = x + y;
+        let sum = x + y.unwrap();
+
 
 
     }

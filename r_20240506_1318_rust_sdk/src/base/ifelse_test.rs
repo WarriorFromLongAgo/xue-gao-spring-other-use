@@ -9,6 +9,11 @@ pub mod ifelse_test_1 {
         } else {
             println!("condition was false");
         }
+
+        if let number = 2 {
+            println!("condition was true");
+        }
+        let v: Vec<i32> = Vec::new();
     }
 
     #[test]
