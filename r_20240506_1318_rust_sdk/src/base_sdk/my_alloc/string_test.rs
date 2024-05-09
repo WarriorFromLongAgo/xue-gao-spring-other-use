@@ -5,6 +5,15 @@ mod string_test_1 {
         let guess = String::new();
 
         println!("You guessed: {guess}");
+
+        let s = String::from("hello world");
+
+        let hello = &s[0..5];
+        let world = &s[6..11];
+
+        println!("You hello: {hello}");
+        println!("You world: {world}");
+
     }
 
     #[test]

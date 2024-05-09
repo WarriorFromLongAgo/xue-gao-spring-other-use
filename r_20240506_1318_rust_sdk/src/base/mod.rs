@@ -10,3 +10,8 @@ mod while_test;
 mod for_test;
 mod owner_ship_test;
 mod owner_ship_test_v2;
+mod struct_test;
+mod trait_test;
+mod impl_test;
+mod enum_test;
+mod option_test;

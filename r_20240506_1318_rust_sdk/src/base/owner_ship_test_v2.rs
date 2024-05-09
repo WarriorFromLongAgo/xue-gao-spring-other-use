@@ -36,12 +36,12 @@ pub mod owner_ship_test_v2 {
     fn owner_ship_test_v2_3() {
         let mut s = String::from("hello");
 
-        let r1 = &s; // 没问题
-        let r2 = &s; // 没问题
-        let r3 = &mut s; // 大问题
+        // let r1 = &s; // 没问题
+        // let r2 = &s; // 没问题
+        // let r3 = &mut s; // 大问题
         // 我们 也 不能在拥有不可变引用的同时拥有可变引用。
 
-        println!("{}, {}, and {}", r1, r2, r3);
+        // println!("{}, {}, and {}", r1, r2, r3);
     }
 
     #[test]
