@@ -10,3 +10,9 @@ rand = "0.8.5"
 #[profile.bench]
 #debug = true
 
+[profile.release]
+#程序默认会开始 展开（unwinding）这意味着 Rust 会回溯栈并清理它遇到的每一个函数的数据，不过这个回溯并清理的过程有很多工作。
+#另一种选择是直接 终止（abort），这会不清理数据就退出程序。
+panic = 'abort'
+
+

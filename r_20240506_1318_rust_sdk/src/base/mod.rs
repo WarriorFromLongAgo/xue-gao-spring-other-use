@@ -15,3 +15,4 @@ mod trait_test;
 mod impl_test;
 mod enum_test;
 mod option_test;
+mod panic_result_test;
