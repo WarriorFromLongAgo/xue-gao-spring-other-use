@@ -1,7 +1,5 @@
 #[cfg(test)]
 mod string_test_1 {
-    use std::collections::HashMap;
-
     #[test]
     fn string_test_1() {
         let guess = String::new();
@@ -70,6 +68,23 @@ mod string_test_1 {
         }
         for b in "Зд".bytes() {
             println!("{b}");
+        }
+    }
+
+    #[test]
+    fn string_test_11() {
+        let string1 = String::from("abcd");
+        let string2 = "xyz";
+
+        let result = longest(string1.as_str(), string2);
+        println!("The longest string is {}", result);
+    }
+
+    fn longest(x: &str, y: &str) -> &str {
+        if x.len() > y.len() {
+            x
+        } else {
+            y
         }
     }
 }
