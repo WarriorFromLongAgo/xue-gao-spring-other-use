@@ -19,3 +19,4 @@ mod option_test;
 mod panic_result_test;
 mod generic_types_test;
 mod life_time_test;
+mod closures_test;

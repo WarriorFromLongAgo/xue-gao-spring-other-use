@@ -80,11 +80,77 @@ mod string_test_1 {
         println!("The longest string is {}", result);
     }
 
-    fn longest(x: &str, y: &str) -> &str {
+    #[test]
+    fn string_test_12() {
+        let string1 = String::from("long string is long");
+
+        {
+            let string2 = String::from("xyz");
+            let result = longest(string1.as_str(), string2.as_str());
+            println!("The longest string is {}", result);
+        }
+    }
+
+    #[test]
+    fn string_test_13() {
+        // result = longest(string1.as_str(), string2.as_str());
+        // |                                                ^^^^^^^ borrowed value does not live long enough
+
+        // let string1 = String::from("long string is long");
+        // let result;
+        // {
+        //     let string2 = String::from("xyz");
+        //     result = longest(string1.as_str(), string2.as_str());
+        // }
+        // println!("The longest string is {}", result);
+    }
+
+    // fn longest(x: &str, y: &str) -> &str {
+    //     if x.len() > y.len() {
+    //         x
+    //     } else {
+    //         y
+    //     }
+    // }
+
+    fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
         if x.len() > y.len() {
             x
         } else {
             y
         }
+    }
+
+    // 深入理解生命周期
+    // 深入理解生命周期
+    // 深入理解生命周期
+
+    // 如果将 longest 函数的实现修改为总是返回第一个参数而不是最长的字符串 slice，就不需要为参数 y 指定一个生命周期。如下代码将能够编译：
+    fn longest_v9<'a>(x: &'a str, y: &str) -> &'a str {
+        x
+    }
+
+    // 当从函数返回一个引用，返回值的生命周期参数需要与一个参数的生命周期参数相匹配。
+    // 如果返回的引用 没有 指向任何一个参数，那么唯一的可能就是它指向一个函数内部创建的值。
+    // 然而它将会是一个悬垂引用，因为它将会在函数结束时离开作用域。尝试考虑这个并不能编译的 longest 函数实现：
+    // fn longest_v10<'a>(x: &str, y: &str) -> &'a str {
+    //     let result = String::from("really long string");
+    //     // returns a value referencing data owned by the current function
+    //     result.as_str()
+    // }
+
+    // 传递所有权（Ownership）: 将拥有数据的所有权转移给调用函数。这样做会使得调用函数拥有数据的所有权，因此返回的引用将仍然有效。
+    fn longest_v10(x: &str, y: &str) -> String {
+        let result = String::from("really long string");
+        // returns a value referencing data owned by the current function
+        result
+    }
+
+    // 使用静态生命周期 'static': 如果您确定返回的数据在函数执行结束后仍然有效，并且其生命周期长于函数的生命周期，
+    // 您可以将返回的引用标记为 'static' 生命周期。这会告诉编译器返回的引用将在整个程序的生命周期内有效。示例代码如下：
+    fn longest_v11(x: &str, y: &str) -> &'static str {
+        let result = "really long string";
+        // 返回静态字符串
+        result
     }
 }
