@@ -70,25 +70,27 @@ pub mod panic_result_test_1 {
         // 从 new 中返回 Result 而不是调用 panic!
         let args: Vec<String> = env::args().collect();
 
-        // let config_result = Config::build(&args);
-        // // 使用unwrap_or_else()方法处理Result
-        // let config = match config_result {
-        //     Ok(config) => config, // 如果Result是Ok，则返回内部的值
-        //     Err(err) => {
-        //         // 如果Result是Err，则执行闭包中的逻辑
-        //         println!("Error building config: {}", err);
-        //         // 返回一个默认的Config，这里只是示例，你可以根据实际情况返回其他值
-        //         Default::default()
-        //     }
-        // };
+        let config_result = Config::build(&args);
+        // 使用unwrap_or_else()方法处理Result
+        let config = match config_result {
+            Ok(config) => config, // 如果Result是Ok，则返回内部的值
+            Err(err) => {
+                // 如果Result是Err，则执行闭包中的逻辑
+                println!("Error building config: {}", err);
+                // 返回一个默认的Config，这里只是示例，你可以根据实际情况返回其他值
+                // Default::default()
+                process::exit(1);
+            }
+        };
 
-        // let config_result_2 = Config::build(&args);
-        // let config_2 = config_result_2.unwrap_or_else(|err| {
-        //     // 如果Result是Err，则执行闭包中的逻辑
-        //     println!("Error building config: {}", err);
-        //     // 返回一个默认的Config，这里只是示例，你可以根据实际情况返回其他值
-        //     Default::default()
-        // });
+        let config_result_2 = Config::build(&args);
+        let config_2 = config_result_2.unwrap_or_else(|err| {
+            // 如果Result是Err，则执行闭包中的逻辑
+            println!("Error building config: {}", err);
+            // 返回一个默认的Config，这里只是示例，你可以根据实际情况返回其他值
+            // Default::default()
+            process::exit(1);
+        });
     }
 
     fn run(config: Config) -> Result<(), Box<dyn Error>> {

@@ -123,6 +123,11 @@ pub mod closures_test_1 {
         // println!("From thread: {:?}", list);
     }
 
+    #[derive(Debug)]
+    struct Rectangle {
+        width: u32,
+        height: u32,
+    }
 
     // 将被捕获的值移出闭包和 Fn trait
     #[test]
@@ -131,11 +136,34 @@ pub mod closures_test_1 {
         // 闭包体中的代码定义了稍后在闭包计算时对引用或值如何操作（也就影响了什么会被移 出 闭包，如有）。
         // 闭包体可以做以下任何事：将一个捕获的值移出闭包，修改捕获的值，既不移动也不修改值，或者一开始就不从环境中捕获值。
 
+        let mut list = [
+            Rectangle { width: 10, height: 1 },
+            Rectangle { width: 3, height: 5 },
+            Rectangle { width: 7, height: 12 },
+        ];
 
-
-
+        list.sort_by_key(|r| r.width);
+        println!("{:?}", list);
     }
 
+    #[test]
+    fn closures_test_7() {
+        // 一旦闭包捕获了定义它的环境中一个值的引用或者所有权（也就影响了什么会被移 进 闭包，如有)，
+        // 闭包体中的代码定义了稍后在闭包计算时对引用或值如何操作（也就影响了什么会被移 出 闭包，如有）。
+        // 闭包体可以做以下任何事：将一个捕获的值移出闭包，修改捕获的值，既不移动也不修改值，或者一开始就不从环境中捕获值。
 
+        let mut list = [
+            Rectangle { width: 10, height: 1 },
+            Rectangle { width: 3, height: 5 },
+            Rectangle { width: 7, height: 12 },
+        ];
+
+        let mut num_sort_operations = 0;
+        list.sort_by_key(|r| {
+            num_sort_operations += 1;
+            r.width
+        });
+        println!("{:?}", list);
+    }
 
 }
