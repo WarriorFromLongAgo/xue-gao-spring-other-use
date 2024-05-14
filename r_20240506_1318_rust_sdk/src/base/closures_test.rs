@@ -61,7 +61,7 @@ pub mod closures_test_1 {
     fn closures_test_2() {
         // let expensive_closure = |num: u32| -> u32 {
         //     println!("calculating slowly...");
-        //     thread::sleep(Duration::from_secs(2));
+        //     my_thread::sleep(Duration::from_secs(2));
         //     num
         // };
 
@@ -113,14 +113,14 @@ pub mod closures_test_1 {
 
         let s = thread::spawn(move || {
             // list.push(7);
-            println!("From thread: {:?}", list);
+            println!("From my_thread: {:?}", list);
         })
             .join()
             .unwrap();
 
         // error
         // value borrowed here after move
-        // println!("From thread: {:?}", list);
+        // println!("From my_thread: {:?}", list);
     }
 
     #[derive(Debug)]
