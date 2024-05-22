@@ -6,7 +6,7 @@ edition = "2021"
 [dependencies]
 rand = "0.8.5"
 regex = "1.10.4"
-
+hex = "0.4.3"
 
 [profile.dev]
 opt-level = 0

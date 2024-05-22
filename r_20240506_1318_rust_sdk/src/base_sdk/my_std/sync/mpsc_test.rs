@@ -4,8 +4,7 @@ mod mpsc_test_1 {
 
     #[test]
     fn stdin_read_line_1() {
-        let (tx, rx) = mpsc::channel();
+        // let (tx, rx) = mpsc::channel();
 
-        println!("You guessed: {guess}");
     }
 }
