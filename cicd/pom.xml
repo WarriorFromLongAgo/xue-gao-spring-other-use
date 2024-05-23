@@ -88,104 +88,104 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.3.7.RELEASE</version>
-                <configuration>
-                    <mainClass>com.xuegao.cicd.CicdApplication</mainClass>
-                    <imageName>${project.build.finalName}</imageName>
-                    <image>
-                        <!--配置镜像名称-->
-                        <name>${docker.registry}/boot/${project.name}:${project.version}</name>
-                        <!--镜像打包完成后自动推送到镜像仓库-->
-                        <!--                        <publish>true</publish>-->
-                    </image>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>build-image</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>repackage</id>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--                <version>2.3.7.RELEASE</version>-->
+<!--                <configuration>-->
+<!--                    <mainClass>com.xuegao.cicd.CicdApplication</mainClass>-->
+<!--                    <imageName>${project.build.finalName}</imageName>-->
+<!--                    <image>-->
+<!--                        &lt;!&ndash;配置镜像名称&ndash;&gt;-->
+<!--                        <name>${docker.registry}/boot/${project.name}:${project.version}</name>-->
+<!--                        &lt;!&ndash;镜像打包完成后自动推送到镜像仓库&ndash;&gt;-->
+<!--                        &lt;!&ndash;                        <publish>true</publish>&ndash;&gt;-->
+<!--                    </image>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>build-image</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                    <execution>-->
+<!--                        <id>repackage</id>-->
+<!--                        <goals>-->
+<!--                            <goal>repackage</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
 
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>dockerfile-maven-plugin</artifactId>
-                <version>${dockerfile-maven.version}</version>
-                <executions>
-                    <execution>
-                        <id>default</id>
-                        <goals>
-                            <goal>build</goal>
-                            <goal>push</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <username>${docker.username}</username>
-                    <password>${docker.password}</password>
-                    <repository>${docker.registry}/${docker.namespace}/${docker.image-warehouse}</repository>
-                    <!--                    <repository>${docker.registry}</repository>-->
-                    <tag>${project.version}</tag>
-                    <!--                    使用 maven仓库setting.xml 还是pom文件-->
-                    <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
-                    <!--                    使用 maven仓库setting.xml 可以提交，但是使用 pom文件的不行-->
-                    <!--                    <servers>-->
-                    <!--                        <server>-->
-                    <!--                            <id>registry.cn-hangzhou.aliyuncs.com</id>-->
-                    <!--                            <username>18000855903</username>-->
-                    <!--                            <password>qq23612244896</password>-->
-                    <!--                        </server>-->
-                    <!--                    </servers>-->
-                    <buildArgs>
-                        <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
-                    </buildArgs>
-                </configuration>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>com.spotify</groupId>-->
+<!--                <artifactId>dockerfile-maven-plugin</artifactId>-->
+<!--                <version>${dockerfile-maven.version}</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>default</id>-->
+<!--                        <goals>-->
+<!--                            <goal>build</goal>-->
+<!--                            <goal>push</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--                <configuration>-->
+<!--                    <username>${docker.username}</username>-->
+<!--                    <password>${docker.password}</password>-->
+<!--                    <repository>${docker.registry}/${docker.namespace}/${docker.image-warehouse}</repository>-->
+<!--                    &lt;!&ndash;                    <repository>${docker.registry}</repository>&ndash;&gt;-->
+<!--                    <tag>${project.version}</tag>-->
+<!--                    &lt;!&ndash;                    使用 maven仓库setting.xml 还是pom文件&ndash;&gt;-->
+<!--                    <useMavenSettingsForAuth>true</useMavenSettingsForAuth>-->
+<!--                    &lt;!&ndash;                    使用 maven仓库setting.xml 可以提交，但是使用 pom文件的不行&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    <servers>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <server>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                            <id>registry.cn-hangzhou.aliyuncs.com</id>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                            <username>18000855903</username>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                            <password>qq23612244896</password>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        </server>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    </servers>&ndash;&gt;-->
+<!--                    <buildArgs>-->
+<!--                        <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>-->
+<!--                    </buildArgs>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
 
             <!-- https://mvnrepository.com/artifact/io.fabric8/docker-maven-plugin -->
-            <plugin>
-                <groupId>io.fabric8</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>${docker-maven-plugin.version}</version>
-                <configuration>
-                    <!--这一部分是为了实现对远程docker容器的控制-->
-                    <!--docker主机地址,用于完成docker各项功能,注意是tcp不是http!-->
-                    <dockerHost>${docker.host}</dockerHost>
-                    <!--docker远程访问所需证书地址,如果docker远程主机没有启用TLS验证则不需要配证书-->
-                    <!--                    <certPath>${project.basedir}/docker/ssh</certPath>-->
-                    <!--这一部分是为了实现docker镜像的构建和推送-->
-                    <!--registry地址,用于推送,拉取镜像,我这里用的是阿里的registry-->
-                    <registry>${docker.registry}</registry>
-                    <!--认证配置,用于私有registry认证,如果忘记了可以去阿里的registry查看-->
-                    <authConfig>
-                        <push>
-                            <username>${docker.username}</username>
-                            <password>${docker.password}</password>
-                        </push>
-                    </authConfig>
+<!--            <plugin>-->
+<!--                <groupId>io.fabric8</groupId>-->
+<!--                <artifactId>docker-maven-plugin</artifactId>-->
+<!--                <version>${docker-maven-plugin.version}</version>-->
+<!--                <configuration>-->
+<!--                    &lt;!&ndash;这一部分是为了实现对远程docker容器的控制&ndash;&gt;-->
+<!--                    &lt;!&ndash;docker主机地址,用于完成docker各项功能,注意是tcp不是http!&ndash;&gt;-->
+<!--                    <dockerHost>${docker.host}</dockerHost>-->
+<!--                    &lt;!&ndash;docker远程访问所需证书地址,如果docker远程主机没有启用TLS验证则不需要配证书&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    <certPath>${project.basedir}/docker/ssh</certPath>&ndash;&gt;-->
+<!--                    &lt;!&ndash;这一部分是为了实现docker镜像的构建和推送&ndash;&gt;-->
+<!--                    &lt;!&ndash;registry地址,用于推送,拉取镜像,我这里用的是阿里的registry&ndash;&gt;-->
+<!--                    <registry>${docker.registry}</registry>-->
+<!--                    &lt;!&ndash;认证配置,用于私有registry认证,如果忘记了可以去阿里的registry查看&ndash;&gt;-->
+<!--                    <authConfig>-->
+<!--                        <push>-->
+<!--                            <username>${docker.username}</username>-->
+<!--                            <password>${docker.password}</password>-->
+<!--                        </push>-->
+<!--                    </authConfig>-->
 
-                    <images>
-                        <image>
-                            <name>${docker.registry}/${docker.namespace}/${docker.image-warehouse}:${project.version}
-                            </name>
-                            <build>
-                                <!--使用dockerFile文件-->
-                                <dockerFile>${project.basedir}/dockerfile</dockerFile>
-                            </build>
-                        </image>
-                    </images>
-                </configuration>
-            </plugin>
+<!--                    <images>-->
+<!--                        <image>-->
+<!--                            <name>${docker.registry}/${docker.namespace}/${docker.image-warehouse}:${project.version}-->
+<!--                            </name>-->
+<!--                            <build>-->
+<!--                                &lt;!&ndash;使用dockerFile文件&ndash;&gt;-->
+<!--                                <dockerFile>${project.basedir}/dockerfile</dockerFile>-->
+<!--                            </build>-->
+<!--                        </image>-->
+<!--                    </images>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
 
         </plugins>
     </build>
