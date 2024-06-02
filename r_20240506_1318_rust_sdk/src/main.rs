@@ -10,6 +10,7 @@ mod rand;
 mod base;
 mod base_sdk;
 mod mi_ma_xue;
+mod futures_test;
 
 fn process_sql_file(file_path: &str, output_file: &mut File, create_table_regex: &Regex) -> Result<(), Box<dyn Error>> {
     let file = File::open(file_path)?;
