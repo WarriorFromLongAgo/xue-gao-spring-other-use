@@ -1,5 +1,7 @@
 #[cfg(test)]
 pub mod closures_test_1 {
+    // https://channaly.medium.com/the-differences-between-function-pointers-and-closures-how-to-rust-b80abd503856
+
     use std::thread;
 
     #[derive(Debug, PartialEq, Copy, Clone)]
@@ -71,6 +73,9 @@ pub mod closures_test_1 {
         // let n = example_closure(5);
         // 第一次使用 String 值调用 example_closure 时，编译器推断这个闭包中 x 的类型以及返回值的类型是 String。
         // 接着这些类型被锁定进闭包 example_closure 中，如果尝试对同一闭包使用不同类型则就会得到类型错误。
+
+        let fn_pointer: fn(i32) -> i32 = add_one;
+        println!("Function pointer output: {}", fn_pointer(2));
     }
 
     #[test]
@@ -95,6 +100,16 @@ pub mod closures_test_1 {
         borrows_mutably();
         borrows_mutably();
         println!("After calling closure: {:?}", list);
+
+        let list_of_strings_1: Vec<String> =
+            list.iter().map(|i| i.to_string()).collect();
+        let list_of_strings_2: Vec<String> =
+            list.iter().map(|i| {
+                println!(" i {i}");
+                i.to_string()
+            }).collect();
+        println!("After calling closure:  list_of_strings  {:?}", list_of_strings_1);
+        println!("After calling closure:  list_of_strings  {:?}", list_of_strings_2);
     }
 
     // 即使闭包体不严格需要所有权，如果希望强制闭包获取它用到的环境中值的所有权，可以在参数列表前使用 move 关键字。
@@ -166,4 +181,33 @@ pub mod closures_test_1 {
         println!("{:?}", list);
     }
 
+    fn add_one(x: i32) -> i32 {
+        println!("x {x}");
+        x + 1
+    }
+
+    fn do_twice(f: fn(i32) -> i32, arg: i32) -> i32 {
+        println!("arg {arg}");
+        f(arg) + f(arg)
+    }
+
+    #[test]
+    fn closures_test_8() {
+        let answer = do_twice(add_one, 5);
+
+        println!("The answer is: {}", answer);
+    }
+
+    fn returns_closure() -> Box<dyn Fn(i32) -> i32> {
+        Box::new(|x| x + 1)
+    }
+
+    #[test]
+    fn closures_test_returns_closures_1() {
+        let aaaa = returns_closure();
+        // 调用闭包
+        let result = aaaa(5);
+        // 验证结果是否正确
+        assert_eq!(result, 6);
+    }
 }

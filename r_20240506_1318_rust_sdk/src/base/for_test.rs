@@ -24,4 +24,13 @@ pub mod for_test_1 {
             println!("2222222222   {number}!");
         }
     }
+
+    #[test]
+    fn for_test_3() {
+        let v = vec!['a', 'b', 'c'];
+
+        for (index, value) in v.iter().enumerate() {
+            println!("{} is at index {}", value, index);
+        }
+    }
 }
