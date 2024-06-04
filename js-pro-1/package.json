@@ -7,6 +7,12 @@
     "start": "node index.js"
   },
   "dependencies": {
+    "bs58": "^5.0.0",
+    "crypto": "^1.0.1",
     "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "chai": "^5.1.1",
+    "mocha": "^10.4.0"
   }
 }
