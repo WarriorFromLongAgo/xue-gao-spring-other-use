@@ -153,4 +153,14 @@ mod string_test_1 {
         // 返回静态字符串
         result
     }
+
+    #[test]
+    fn string_test_14() {
+        let result = "really long string".to_string();
+        let result2 = "11111".to_string();
+        // let test = result + &result2;
+        // println!("test {test}");
+        // println!("test {result}");
+        // println!("test {result2}");
+    }
 }
