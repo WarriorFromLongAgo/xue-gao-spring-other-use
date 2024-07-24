@@ -1,5 +1,5 @@
 [package]
-name = "cargo_1"
+name = "sqlx_pg"
 version = "0.1.0"
 edition = "2021"
 authors = ["Your Name <you@example.com>"]
@@ -7,11 +7,10 @@ authors = ["Your Name <you@example.com>"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-#regex = "1.10.4"
-rand = { git = "https://github.com/rust-lang-nursery/rand.git" }
-
-
-
+sqlx = { version = "0.7.4", features = ["runtime-tokio-rustls", "postgres", "macros", "chrono"] }
+tokio = { version = "1.38.0", features = ["full"] }
+chrono = { version = "0.4.38", features = ["serde"] }
+serde = { version = "1.0.203", features = ["derive"] }
 
 
 
